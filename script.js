@@ -1,11 +1,10 @@
 const savedEntries = JSON.parse(localStorage.getItem('entries')) || [];
 
-// Function to save the journal entry
 function saveEntry() {
     const pleasantness = document.getElementById("pleasantness").value;
     const energy = document.getElementById("energy").value;
     const entry = document.getElementById("entry").value;
-    const date = new Date().toISOString().split('T')[0]; // Date in YYYY-MM-DD format
+    const date = new Date().toISOString().split('T')[0];
 
     if (entry.trim() === "" || pleasantness === "" || energy === "") {
         alert("Please fill in all fields.");
@@ -19,19 +18,18 @@ function saveEntry() {
         entry
     };
 
-    savedEntries.unshift(newEntry); // Add new entry at the beginning of the array
+    savedEntries.unshift(newEntry); 
     localStorage.setItem('entries', JSON.stringify(savedEntries));
     displayEntries();
     updateChart();
-    document.getElementById("entry").value = ''; // Clear the entry box
-    document.getElementById("pleasantness").value = ''; // Clear pleasantness input
-    document.getElementById("energy").value = ''; // Clear energy input
+    document.getElementById("entry").value = ''; 
+    document.getElementById("pleasantness").value = ''; 
+    document.getElementById("energy").value = '';
 }
 
-// Function to display the entries
 function displayEntries() {
     const entriesList = document.getElementById("entriesList");
-    entriesList.innerHTML = ''; // Clear current list
+    entriesList.innerHTML = ''; 
 
     if (savedEntries.length === 0) {
         entriesList.innerHTML = "<p>No entries yet.</p>";
@@ -51,22 +49,19 @@ function displayEntries() {
     }
 }
 
-// Function to delete an entry
 function deleteEntry(index) {
-    savedEntries.splice(index, 1); // Remove the entry at the given index
-    localStorage.setItem('entries', JSON.stringify(savedEntries)); // Update localStorage
-    displayEntries(); // Re-render the entries
-    updateChart(); // Re-render the chart
+    savedEntries.splice(index, 1); 
+    localStorage.setItem('entries', JSON.stringify(savedEntries));
+    displayEntries(); 
+    updateChart();
 }
 
-// Function to update the mood chart
 function updateChart() {
     const chartData = savedEntries.map(entry => ({
-        x: entry.pleasantness,    // Pleasantness on the X-axis
-        y: entry.energy          // Energy on the Y-axis
+        x: entry.pleasantness,  
+        y: entry.energy 
     }));
 
-    // Calculate the average of all entries
     const avgPleasantness = savedEntries.reduce((acc, entry) => acc + entry.pleasantness, 0) / savedEntries.length;
     const avgEnergy = savedEntries.reduce((acc, entry) => acc + entry.energy, 0) / savedEntries.length;
 
@@ -121,7 +116,6 @@ function updateChart() {
     });
 }
 
-// Initialize by displaying saved entries and the chart
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('entriesList')) {
         displayEntries();
