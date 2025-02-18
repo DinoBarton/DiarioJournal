@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>DiarioJournal</h1>
+
+        <!-- Mood Inputs and Save Entry -->
+        <label for="pleasantness">How pleasant is your day? (0 - 10)</label>
+        <input type="number" id="pleasantness" min="0" max="10">
+
+        <label for="energy">How energetic are you today? (0 - 10)</label>
+        <input type="number" id="energy" min="0" max="10">
+
+        <label for="entry">Your Journal Entry:</label>
+        <textarea id="entry" rows="10" placeholder="Write about your day..."></textarea>
+
+        <button onclick="saveEntry()">Save Entry</button>
+        
+        <!-- Journal Entries Section -->
+        <h2>Journal Entries</h2>
+        <div id="entriesList"></div>
+
+        <p>visit your <a href="analytics.html">analytics</a></p>
+    </div>
+
+    <script src="script.js">   
+    </script>
+
+</body>
+</html>
